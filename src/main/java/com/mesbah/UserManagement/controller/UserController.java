@@ -2,6 +2,7 @@ package com.mesbah.UserManagement.controller;
 
 import com.mesbah.UserManagement.model.User;
 import com.mesbah.UserManagement.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,12 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<Map<User, String>> createUser(@Valid @RequestBody User user) {
         User newUser = userService.saveUser(user);;
-        return ResponseEntity.ok(newUser);
+        String response = "User created";
+        Map<User, String> map = new HashMap<>();
+        map.put(newUser, response);
+        return ResponseEntity.ok(map);
     }
 
     @PutMapping("/users/{id}")

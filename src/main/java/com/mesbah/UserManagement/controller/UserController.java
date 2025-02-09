@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(value = "http://localhost:3000")
 @RequestMapping("/api/v1")
 @RestController
 public class UserController {
@@ -20,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Map<User, String>> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<Map<User, String>> createUser(@RequestBody User user) {
         User newUser = userService.saveUser(user);;
         String response = "User created";
         Map<User, String> map = new HashMap<>();

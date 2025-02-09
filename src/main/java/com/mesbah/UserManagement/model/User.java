@@ -10,8 +10,6 @@ import lombok.NonNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-
-    @NotBlank(message = "Email is required")
     private String firstName;
     private String lastName;
     private String email;
